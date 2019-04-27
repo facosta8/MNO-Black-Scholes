@@ -13,10 +13,16 @@ double d1(double b0,double b1,double b2,double b3,double b4,double x0,double h)
     return  (fn(b0,b1,b2,b3,b4,x0 + h) - fn(b0,b1,b2,b3,b4,x0 -h))/(2*h);
 }
 
+double d2(double b0,double b1,double b2,double b3,double b4,double x0,double h)
+{
+    return  ( fn(b0,b1,b2,b3,b4,x0 + h) - 2*fn(b0,b1,b2,b3,b4,x0) + fn(b0,b1,b2,b3,b4,x0 -h) ) / (h*h);
+}
+
+
 int main(int argc, char** argv) {
 	double b0,b1,b2,b3,b4;
 	double x;
-	double result;
+	double result,result2;
 	cout << "dame b0: \n";
 	cin  >> b0;
 	cout << "dame b1: \n";
@@ -30,7 +36,9 @@ int main(int argc, char** argv) {
 	cout << "dame x: \n";
 	cin  >> x;
 	result = d1(b0,b1,b2,b3,b4,x,0.001);
-	cout << "Resultado: " << result << ".\n"; 
-
+	result2 = d2(b0,b1,b2,b3,b4,x,0.001);
+	cout << "Resultado d1: " << result << ".\n"; 
+	cout << "Resultado d2: " << result2 << ".\n"; 
+	
 	return 0;
 }

@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     38808,       1047]
-NotebookOptionsPosition[     36091,        957]
-NotebookOutlinePosition[     36615,        978]
-CellTagsIndexPosition[     36572,        975]
+NotebookDataLength[     41993,       1118]
+NotebookOptionsPosition[     39251,       1025]
+NotebookOutlinePosition[     39775,       1046]
+CellTagsIndexPosition[     39732,       1043]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -44,7 +44,8 @@ Cell[BoxData[
    3.6453990258914485`*^9, 3.645447523534588*^9, 3.6454477893855743`*^9, 
    3.6454478732911663`*^9, {3.645447910517787*^9, 3.64544794420352*^9}, 
    3.6454479824291935`*^9, 3.6454480262109733`*^9, 3.6455286778566465`*^9, 
-   3.645529792126173*^9, 3.6457175617080927`*^9, 3.6457178705352373`*^9}],
+   3.645529792126173*^9, 3.6457175617080927`*^9, 3.6457178705352373`*^9, 
+   3.76532438203717*^9}],
 
 Cell[BoxData["81"], "Output",
  CellChangeTimes->{
@@ -53,7 +54,8 @@ Cell[BoxData["81"], "Output",
    3.6453990258914485`*^9, 3.645447523534588*^9, 3.6454477893855743`*^9, 
    3.6454478732911663`*^9, {3.645447910517787*^9, 3.64544794420352*^9}, 
    3.6454479824291935`*^9, 3.6454480262109733`*^9, 3.6455286778566465`*^9, 
-   3.645529792126173*^9, 3.6457175617080927`*^9, 3.6457178705352373`*^9}],
+   3.645529792126173*^9, 3.6457175617080927`*^9, 3.6457178705352373`*^9, 
+   3.7653243820401907`*^9}],
 
 Cell[BoxData["0.09`"], "Output",
  CellChangeTimes->{
@@ -62,7 +64,8 @@ Cell[BoxData["0.09`"], "Output",
    3.6453990258914485`*^9, 3.645447523534588*^9, 3.6454477893855743`*^9, 
    3.6454478732911663`*^9, {3.645447910517787*^9, 3.64544794420352*^9}, 
    3.6454479824291935`*^9, 3.6454480262109733`*^9, 3.6455286778566465`*^9, 
-   3.645529792126173*^9, 3.6457175617080927`*^9, 3.6457178705352373`*^9}],
+   3.645529792126173*^9, 3.6457175617080927`*^9, 3.6457178705352373`*^9, 
+   3.765324382042161*^9}],
 
 Cell[BoxData["0.08`"], "Output",
  CellChangeTimes->{
@@ -71,7 +74,8 @@ Cell[BoxData["0.08`"], "Output",
    3.6453990258914485`*^9, 3.645447523534588*^9, 3.6454477893855743`*^9, 
    3.6454478732911663`*^9, {3.645447910517787*^9, 3.64544794420352*^9}, 
    3.6454479824291935`*^9, 3.6454480262109733`*^9, 3.6455286778566465`*^9, 
-   3.645529792126173*^9, 3.6457175617080927`*^9, 3.6457178705352373`*^9}]
+   3.645529792126173*^9, 3.6457175617080927`*^9, 3.6457178705352373`*^9, 
+   3.765324382045121*^9}]
 }, Open  ]],
 
 Cell["\<\
@@ -136,7 +140,8 @@ Cell[BoxData[
        RowBox[{"0.0410125`", " ", "t"}]], " ", 
       SqrtBox["S"]}]}], ")"}]}], "+", "S"}]], "Output",
  CellChangeTimes->{3.6454482661149755`*^9, 3.645528682232272*^9, 
-  3.6455298024289365`*^9, 3.645717567443432*^9, 3.6457178740010014`*^9}]
+  3.6455298024289365`*^9, 3.645717567443432*^9, 3.6457178740010014`*^9, 
+  3.765324385300415*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -173,7 +178,8 @@ Cell[BoxData[
  CellChangeTimes->{
   3.6454478374450035`*^9, {3.645447879356233*^9, 3.6454479555384173`*^9}, 
    3.6454479856505027`*^9, 3.6454480319790535`*^9, 3.6454481065713243`*^9, 
-   3.6455286857331934`*^9, 3.6455298049617577`*^9, 3.6457178791584816`*^9}]
+   3.6455286857331934`*^9, 3.6455298049617577`*^9, 3.6457178791584816`*^9, 
+   3.765324388906761*^9}]
 }, Open  ]],
 
 Cell["Como podemos observar coinside con el u0 de ADM.", "Text",
@@ -206,7 +212,8 @@ Cell[BoxData[
   3.644879182952524*^9, 3.6449194477524405`*^9, 3.6449263409957247`*^9, 
   3.644926386864575*^9, 3.6453973924415236`*^9, 3.6453985993304935`*^9, 
   3.6453989401016016`*^9, 3.6453990323497477`*^9, 3.6454481416138*^9, 
-  3.6455287022226515`*^9, 3.6455298103687005`*^9, 3.64571789246949*^9}]
+  3.6455287022226515`*^9, 3.6455298103687005`*^9, 3.64571789246949*^9, 
+  3.7653243917771463`*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -241,7 +248,7 @@ Cell[BoxData[
    3.644919910276264*^9, 3.64492634471474*^9, 3.6449263884117727`*^9, 
    3.6453973971804385`*^9, 3.6453986014714594`*^9, 3.6453989445752506`*^9, 
    3.6453990349138527`*^9, 3.6454481436963215`*^9, 3.645528705191799*^9, 
-   3.645717897739355*^9}]
+   3.645717897739355*^9, 3.765324393636109*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -316,7 +323,7 @@ Cell[BoxData[
   3.6449263447616367`*^9, 3.6449263899430246`*^9, 3.6453974007749605`*^9, 
   3.6453986036592193`*^9, 3.6453989472474775`*^9, 3.64539903878928*^9, 
   3.645448145849413*^9, 3.645528707238981*^9, 3.6457179017778063`*^9, 
-  3.645719038197916*^9}]
+  3.645719038197916*^9, 3.765324395491151*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -352,14 +359,14 @@ Cell[BoxData[
 Cell[BoxData[
  RowBox[{"-", 
   FractionBox[
-   RowBox[{"3947.4843749999995`", " ", "t"}], 
+   RowBox[{"4152.515625`", " ", "t"}], 
    SuperscriptBox["S", "3"]]}]], "Output",
  CellChangeTimes->{3.644876070367502*^9, 3.644878441862191*^9, 
   3.644879190239137*^9, 3.6449194525041246`*^9, 3.644920283539137*^9, 
   3.644926357343013*^9, 3.644926391479*^9, 3.645397403056409*^9, 
   3.645398605268896*^9, 3.645398949560232*^9, 3.6453990407114334`*^9, 
   3.6454481477004805`*^9, 3.6455287090439987`*^9, 3.645529819448412*^9, 
-  3.6457179120906115`*^9}]
+  3.6457179120906115`*^9, 3.7653243970849366`*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -421,7 +428,7 @@ Cell[BoxData[
    SuperscriptBox["t", "2"]}], "+", 
   RowBox[{"0.0032`", " ", "S", " ", 
    SuperscriptBox["t", "2"]}]}]], "Output",
- CellChangeTimes->{3.645719937732154*^9}]
+ CellChangeTimes->{3.645719937732154*^9, 3.765324398714547*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -470,7 +477,7 @@ Cell[BoxData[
   RowBox[{"170.30504707031253`", " ", 
    SuperscriptBox["t", "2"]}], 
   SuperscriptBox["S", "3"]]], "Output",
- CellChangeTimes->{3.6457197398204565`*^9}]
+ CellChangeTimes->{3.6457197398204565`*^9, 3.7653244003621626`*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -532,7 +539,7 @@ Cell[BoxData[
    SuperscriptBox["t", "3"]}], "-", 
   RowBox[{"0.00008533333333333334`", " ", "S", " ", 
    SuperscriptBox["t", "3"]}]}]], "Output",
- CellChangeTimes->{3.6457199787845325`*^9}]
+ CellChangeTimes->{3.6457199787845325`*^9, 3.7653244032972956`*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -597,7 +604,7 @@ Cell[BoxData[
    3.645398617337552*^9}, 3.6453989647073183`*^9, 3.6453990454620237`*^9, 
    3.645448158927637*^9, 3.6455287138728676`*^9, 3.6455298236561317`*^9, 
    3.645530767500561*^9, 3.645717917730607*^9, 3.6457190623688*^9, 
-   3.645720058797633*^9}]
+   3.645720058797633*^9, 3.7653244051353574`*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -609,6 +616,8 @@ Cell[BoxData[
     RowBox[{"S", ",", "t"}], "]"}]}]}]], "Input",
  CellChangeTimes->{{3.645448554996952*^9, 3.6454485835562534`*^9}, 
    3.645448677317964*^9}],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"Manipulate", "[", 
@@ -662,7 +671,7 @@ Cell[BoxData[
           RowBox[{"0.00008533333333333334`", " ", "S", " ", 
            SuperscriptBox["t", "3"]}]}], ")"}]}]}], "}"}], ",", 
      RowBox[{"{", 
-      RowBox[{"S", ",", "0", ",", "5"}], "}"}], ",", 
+      RowBox[{"S", ",", "0", ",", "82"}], "}"}], ",", 
      RowBox[{"PlotLegends", "\[Rule]", 
       RowBox[{"Placed", "[", 
        RowBox[{
@@ -681,7 +690,61 @@ Cell[BoxData[
     RowBox[{"t", ",", "0", ",", "1"}], "}"}]}], "]"}]], "Input",
  CellChangeTimes->{{3.6457179379378567`*^9, 3.6457179932247024`*^9}, {
   3.6457180890405383`*^9, 3.6457180899570503`*^9}, {3.6457190709886103`*^9, 
-  3.6457191654377236`*^9}}],
+  3.6457191654377236`*^9}, {3.765324423311728*^9, 3.7653244387923155`*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`t$$ = 1., Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`t$$], 0, 1}}, Typeset`size$$ = {450., {130., 174.}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`t$13663$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`t$$ = 0}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`t$$, $CellContext`t$13663$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Plot[{900. (9 E^(0.082025 $CellContext`t$$)/4 + 
+           E^(0.0410125 $CellContext`t$$) $CellContext`S^
+             Rational[1, 2]) + $CellContext`S, 2025 + 
+         900 $CellContext`S^
+           Rational[
+            1, 2] + $CellContext`S - ((-3.940625) $CellContext`t$$ - (-0.08 + 
+          0.91125 $CellContext`S^Rational[1, 2] + 
+          0.08 (1 + 450/$CellContext`S^
+             Rational[1, 2]) $CellContext`S) $CellContext`t$$ + 
+         0.1681768828125 $CellContext`t$$^2 + 
+         0.7569113203125 $CellContext`S^Rational[1, 2] $CellContext`t$$^2 + 
+         0.0032 $CellContext`S $CellContext`t$$^2 - 
+         0.004598236270898439 $CellContext`t$$^3 - 
+         0.010347608508105469` $CellContext`S^
+          Rational[1, 2] $CellContext`t$$^3 - 
+         0.00008533333333333334 $CellContext`S $CellContext`t$$^3)}, \
+{$CellContext`S, 0, 82}, PlotLegends -> 
+        Placed[{"\!\(\*SubscriptBox[\(U\), \(EXACTA\)]\)", 
+           "\!\(\*SubscriptBox[\(U\), \(ADM\)]\)"}, Above], 
+        PlotStyle -> {Triangle, Dashed}, AxesOrigin -> {0, 0}], 
+      "Specifications" :> {{$CellContext`t$$, 0, 1}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{511., {205., 212.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.765324408862399*^9, 3.765324439439584*^9}}]
+}, Open  ]],
 
 Cell[BoxData[
  RowBox[{
@@ -703,22 +766,23 @@ Cell[BoxData[
          Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
          Typeset`specs$$, Typeset`size$$, Typeset`update$$, 
          Typeset`initDone$$, Typeset`skipInitDone$$}, "Body" :> 
-       Plot[{900. (9 E^(0.082025 $CellContext`t$$)/4 + 
+       Plot[{900. (9 (E^(0.082025 $CellContext`t$$)/4) + 
             E^(0.0410125 $CellContext`t$$) $CellContext`S^
               Rational[1, 2]) + $CellContext`S, 2025 + 
           900 $CellContext`S^
             Rational[
              1, 2] + $CellContext`S - ((-3.940625) $CellContext`t$$ - (-0.08 + 
-           0.91125 $CellContext`S^Rational[1, 2] + 
-           0.08 (1 + 450/$CellContext`S^
-              Rational[1, 2]) $CellContext`S) $CellContext`t$$ + 
-          0.1681768828125 $CellContext`t$$^2 + 
-          0.7569113203125 $CellContext`S^Rational[1, 2] $CellContext`t$$^2 + 
-          0.0032 $CellContext`S $CellContext`t$$^2 - 
-          0.004598236270898439 $CellContext`t$$^3 - 
-          0.010347608508105469` $CellContext`S^
-           Rational[1, 2] $CellContext`t$$^3 - 
-          0.00008533333333333334 $CellContext`S $CellContext`t$$^3)}, \
+           0.91125 $CellContext`S^Rational[1, 2] + (
+             0.08 (1 + 450/$CellContext`S^
+               Rational[1, 2])) $CellContext`S) $CellContext`t$$ + 
+          0.1681768828125 $CellContext`t$$^2 + (
+            0.7569113203125 $CellContext`S^
+             Rational[1, 2]) $CellContext`t$$^2 + (
+            0.0032 $CellContext`S) $CellContext`t$$^2 - 
+          0.004598236270898439 $CellContext`t$$^3 - (
+           0.010347608508105469` $CellContext`S^
+            Rational[1, 2]) $CellContext`t$$^3 - (
+           0.00008533333333333334 $CellContext`S) $CellContext`t$$^3)}, \
 {$CellContext`S, 0, 5}, PlotLegends -> 
          Placed[{"\!\(\*SubscriptBox[\(U\), \(EXACTA\)]\)", 
             "\!\(\*SubscriptBox[\(U\), \(ADM\)]\)"}, Above], 
@@ -757,22 +821,23 @@ Cell[BoxData[
          Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
          Typeset`specs$$, Typeset`size$$, Typeset`update$$, 
          Typeset`initDone$$, Typeset`skipInitDone$$}, "Body" :> 
-       Plot[{900. (9 E^(0.082025 $CellContext`t$$)/4 + 
+       Plot[{900. (9 (E^(0.082025 $CellContext`t$$)/4) + 
             E^(0.0410125 $CellContext`t$$) $CellContext`S^
               Rational[1, 2]) + $CellContext`S, 2025 + 
           900 $CellContext`S^
             Rational[
              1, 2] + $CellContext`S - ((-3.940625) $CellContext`t$$ - (-0.08 + 
-           0.91125 $CellContext`S^Rational[1, 2] + 
-           0.08 (1 + 450/$CellContext`S^
-              Rational[1, 2]) $CellContext`S) $CellContext`t$$ + 
-          0.1681768828125 $CellContext`t$$^2 + 
-          0.7569113203125 $CellContext`S^Rational[1, 2] $CellContext`t$$^2 + 
-          0.0032 $CellContext`S $CellContext`t$$^2 - 
-          0.004598236270898439 $CellContext`t$$^3 - 
-          0.010347608508105469` $CellContext`S^
-           Rational[1, 2] $CellContext`t$$^3 - 
-          0.00008533333333333334 $CellContext`S $CellContext`t$$^3)}, \
+           0.91125 $CellContext`S^Rational[1, 2] + (
+             0.08 (1 + 450/$CellContext`S^
+               Rational[1, 2])) $CellContext`S) $CellContext`t$$ + 
+          0.1681768828125 $CellContext`t$$^2 + (
+            0.7569113203125 $CellContext`S^
+             Rational[1, 2]) $CellContext`t$$^2 + (
+            0.0032 $CellContext`S) $CellContext`t$$^2 - 
+          0.004598236270898439 $CellContext`t$$^3 - (
+           0.010347608508105469` $CellContext`S^
+            Rational[1, 2]) $CellContext`t$$^3 - (
+           0.00008533333333333334 $CellContext`S) $CellContext`t$$^3)}, \
 {$CellContext`S, 0, 5}, PlotLegends -> 
          Placed[{"\!\(\*SubscriptBox[\(U\), \(EXACTA\)]\)", 
             "\!\(\*SubscriptBox[\(U\), \(ADM\)]\)"}, Above], 
@@ -812,22 +877,23 @@ Cell[BoxData[
          Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
          Typeset`specs$$, Typeset`size$$, Typeset`update$$, 
          Typeset`initDone$$, Typeset`skipInitDone$$}, "Body" :> 
-       Plot[{900. (9 E^(0.082025 $CellContext`t$$)/4 + 
+       Plot[{900. (9 (E^(0.082025 $CellContext`t$$)/4) + 
             E^(0.0410125 $CellContext`t$$) $CellContext`S^
               Rational[1, 2]) + $CellContext`S, 2025 + 
           900 $CellContext`S^
             Rational[
              1, 2] + $CellContext`S - ((-3.940625) $CellContext`t$$ - (-0.08 + 
-           0.91125 $CellContext`S^Rational[1, 2] + 
-           0.08 (1 + 450/$CellContext`S^
-              Rational[1, 2]) $CellContext`S) $CellContext`t$$ + 
-          0.1681768828125 $CellContext`t$$^2 + 
-          0.7569113203125 $CellContext`S^Rational[1, 2] $CellContext`t$$^2 + 
-          0.0032 $CellContext`S $CellContext`t$$^2 - 
-          0.004598236270898439 $CellContext`t$$^3 - 
-          0.010347608508105469` $CellContext`S^
-           Rational[1, 2] $CellContext`t$$^3 - 
-          0.00008533333333333334 $CellContext`S $CellContext`t$$^3)}, \
+           0.91125 $CellContext`S^Rational[1, 2] + (
+             0.08 (1 + 450/$CellContext`S^
+               Rational[1, 2])) $CellContext`S) $CellContext`t$$ + 
+          0.1681768828125 $CellContext`t$$^2 + (
+            0.7569113203125 $CellContext`S^
+             Rational[1, 2]) $CellContext`t$$^2 + (
+            0.0032 $CellContext`S) $CellContext`t$$^2 - 
+          0.004598236270898439 $CellContext`t$$^3 - (
+           0.010347608508105469` $CellContext`S^
+            Rational[1, 2]) $CellContext`t$$^3 - (
+           0.00008533333333333334 $CellContext`S) $CellContext`t$$^3)}, \
 {$CellContext`S, 0, 5}, PlotLegends -> 
          Placed[{"\!\(\*SubscriptBox[\(U\), \(EXACTA\)]\)", 
             "\!\(\*SubscriptBox[\(U\), \(ADM\)]\)"}, Above], 
@@ -866,22 +932,23 @@ Cell[BoxData[
          Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
          Typeset`specs$$, Typeset`size$$, Typeset`update$$, 
          Typeset`initDone$$, Typeset`skipInitDone$$}, "Body" :> 
-       Plot[{900. (9 E^(0.082025 $CellContext`t$$)/4 + 
+       Plot[{900. (9 (E^(0.082025 $CellContext`t$$)/4) + 
             E^(0.0410125 $CellContext`t$$) $CellContext`S^
               Rational[1, 2]) + $CellContext`S, 2025 + 
           900 $CellContext`S^
             Rational[
              1, 2] + $CellContext`S - ((-3.940625) $CellContext`t$$ - (-0.08 + 
-           0.91125 $CellContext`S^Rational[1, 2] + 
-           0.08 (1 + 450/$CellContext`S^
-              Rational[1, 2]) $CellContext`S) $CellContext`t$$ + 
-          0.1681768828125 $CellContext`t$$^2 + 
-          0.7569113203125 $CellContext`S^Rational[1, 2] $CellContext`t$$^2 + 
-          0.0032 $CellContext`S $CellContext`t$$^2 - 
-          0.004598236270898439 $CellContext`t$$^3 - 
-          0.010347608508105469` $CellContext`S^
-           Rational[1, 2] $CellContext`t$$^3 - 
-          0.00008533333333333334 $CellContext`S $CellContext`t$$^3)}, \
+           0.91125 $CellContext`S^Rational[1, 2] + (
+             0.08 (1 + 450/$CellContext`S^
+               Rational[1, 2])) $CellContext`S) $CellContext`t$$ + 
+          0.1681768828125 $CellContext`t$$^2 + (
+            0.7569113203125 $CellContext`S^
+             Rational[1, 2]) $CellContext`t$$^2 + (
+            0.0032 $CellContext`S) $CellContext`t$$^2 - 
+          0.004598236270898439 $CellContext`t$$^3 - (
+           0.010347608508105469` $CellContext`S^
+            Rational[1, 2]) $CellContext`t$$^3 - (
+           0.00008533333333333334 $CellContext`S) $CellContext`t$$^3)}, \
 {$CellContext`S, 0, 5}, PlotLegends -> 
          Placed[{"\!\(\*SubscriptBox[\(U\), \(EXACTA\)]\)", 
             "\!\(\*SubscriptBox[\(U\), \(ADM\)]\)"}, Above], 
@@ -921,22 +988,23 @@ Cell[BoxData[
          Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
          Typeset`specs$$, Typeset`size$$, Typeset`update$$, 
          Typeset`initDone$$, Typeset`skipInitDone$$}, "Body" :> 
-       Plot[{900. (9 E^(0.082025 $CellContext`t$$)/4 + 
+       Plot[{900. (9 (E^(0.082025 $CellContext`t$$)/4) + 
             E^(0.0410125 $CellContext`t$$) $CellContext`S^
               Rational[1, 2]) + $CellContext`S, 2025 + 
           900 $CellContext`S^
             Rational[
              1, 2] + $CellContext`S - ((-3.940625) $CellContext`t$$ - (-0.08 + 
-           0.91125 $CellContext`S^Rational[1, 2] + 
-           0.08 (1 + 450/$CellContext`S^
-              Rational[1, 2]) $CellContext`S) $CellContext`t$$ + 
-          0.1681768828125 $CellContext`t$$^2 + 
-          0.7569113203125 $CellContext`S^Rational[1, 2] $CellContext`t$$^2 + 
-          0.0032 $CellContext`S $CellContext`t$$^2 - 
-          0.004598236270898439 $CellContext`t$$^3 - 
-          0.010347608508105469` $CellContext`S^
-           Rational[1, 2] $CellContext`t$$^3 - 
-          0.00008533333333333334 $CellContext`S $CellContext`t$$^3)}, \
+           0.91125 $CellContext`S^Rational[1, 2] + (
+             0.08 (1 + 450/$CellContext`S^
+               Rational[1, 2])) $CellContext`S) $CellContext`t$$ + 
+          0.1681768828125 $CellContext`t$$^2 + (
+            0.7569113203125 $CellContext`S^
+             Rational[1, 2]) $CellContext`t$$^2 + (
+            0.0032 $CellContext`S) $CellContext`t$$^2 - 
+          0.004598236270898439 $CellContext`t$$^3 - (
+           0.010347608508105469` $CellContext`S^
+            Rational[1, 2]) $CellContext`t$$^3 - (
+           0.00008533333333333334 $CellContext`S) $CellContext`t$$^3)}, \
 {$CellContext`S, 0, 5}, PlotLegends -> 
          Placed[{"\!\(\*SubscriptBox[\(U\), \(EXACTA\)]\)", 
             "\!\(\*SubscriptBox[\(U\), \(ADM\)]\)"}, Above], 
@@ -980,75 +1048,78 @@ Notebook[{
 Cell[558, 20, 118, 1, 38, "Text"],
 Cell[CellGroupData[{
 Cell[701, 25, 634, 11, 106, "Input"],
-Cell[1338, 38, 513, 8, 36, "Output"],
-Cell[1854, 48, 493, 7, 36, "Output"],
-Cell[2350, 57, 496, 7, 36, "Output"],
-Cell[2849, 66, 496, 7, 36, "Output"]
+Cell[1338, 38, 538, 9, 36, "Output"],
+Cell[1879, 49, 521, 8, 36, "Output"],
+Cell[2403, 59, 522, 8, 36, "Output"],
+Cell[2928, 69, 522, 8, 36, "Output"]
 }, Open  ]],
-Cell[3360, 76, 153, 6, 88, "Text"],
-Cell[3516, 84, 978, 31, 99, "Input"],
+Cell[3465, 80, 153, 6, 88, "Text"],
+Cell[3621, 88, 978, 31, 87, "Input"],
 Cell[CellGroupData[{
-Cell[4519, 119, 145, 3, 36, "Input"],
-Cell[4667, 124, 517, 14, 64, "Output"]
+Cell[4624, 123, 145, 3, 36, "Input"],
+Cell[4772, 128, 542, 15, 64, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[5221, 143, 123, 2, 36, "Input"],
-Cell[5347, 147, 78, 1, 36, "Output"]
+Cell[5351, 148, 123, 2, 36, "Input"],
+Cell[5477, 152, 78, 1, 36, "Output"]
 }, Open  ]],
-Cell[5440, 151, 94, 1, 36, "Input"],
-Cell[5537, 154, 205, 2, 63, "Text"],
+Cell[5570, 156, 94, 1, 36, "Input"],
+Cell[5667, 159, 205, 2, 63, "Text"],
 Cell[CellGroupData[{
-Cell[5767, 160, 145, 3, 36, "Input"],
-Cell[5915, 165, 441, 10, 43, "Output"]
+Cell[5897, 165, 145, 3, 36, "Input"],
+Cell[6045, 170, 467, 11, 44, "Output"]
 }, Open  ]],
-Cell[6371, 178, 132, 1, 38, "Text"],
-Cell[6506, 181, 429, 10, 65, "Input"],
+Cell[6527, 184, 132, 1, 38, "Text"],
+Cell[6662, 187, 429, 10, 68, "Input"],
 Cell[CellGroupData[{
-Cell[6960, 195, 148, 3, 36, "Input"],
-Cell[7111, 200, 453, 8, 40, "Output"]
+Cell[7116, 201, 148, 3, 36, "Input"],
+Cell[7267, 206, 480, 9, 40, "Output"]
 }, Open  ]],
-Cell[7579, 211, 503, 15, 60, "Input"],
+Cell[7762, 218, 503, 15, 60, "Input"],
 Cell[CellGroupData[{
-Cell[8107, 230, 144, 3, 36, "Input"],
-Cell[8254, 235, 467, 8, 56, "Output"]
+Cell[8290, 237, 144, 3, 36, "Input"],
+Cell[8437, 242, 489, 8, 56, "Output"]
 }, Open  ]],
-Cell[8736, 246, 1521, 43, 106, "Input"],
+Cell[8941, 253, 1521, 43, 60, "Input"],
 Cell[CellGroupData[{
-Cell[10282, 293, 144, 3, 36, "Input"],
-Cell[10429, 298, 783, 20, 62, "Output"]
+Cell[10487, 300, 144, 3, 36, "Input"],
+Cell[10634, 305, 805, 20, 62, "Output"]
 }, Open  ]],
-Cell[11227, 321, 624, 21, 60, "Input"],
+Cell[11454, 328, 624, 21, 36, "Input"],
 Cell[CellGroupData[{
-Cell[11876, 346, 144, 3, 36, "Input"],
-Cell[12023, 351, 505, 10, 56, "Output"]
+Cell[12103, 353, 144, 3, 36, "Input"],
+Cell[12250, 358, 522, 10, 57, "Output"]
 }, Open  ]],
-Cell[12543, 364, 1315, 40, 60, "Input"],
+Cell[12787, 371, 1315, 40, 60, "Input"],
 Cell[CellGroupData[{
-Cell[13883, 408, 146, 3, 36, "Input"],
-Cell[14032, 413, 352, 10, 40, "Output"]
+Cell[14127, 415, 146, 3, 36, "Input"],
+Cell[14276, 420, 374, 10, 40, "Output"]
 }, Open  ]],
-Cell[14399, 426, 907, 31, 36, "Input"],
+Cell[14665, 433, 907, 31, 36, "Input"],
 Cell[CellGroupData[{
-Cell[15331, 461, 185, 4, 60, "Input"],
-Cell[15519, 467, 182, 5, 60, "Output"]
+Cell[15597, 468, 185, 4, 60, "Input"],
+Cell[15785, 474, 206, 5, 60, "Output"]
 }, Open  ]],
-Cell[15716, 475, 1316, 40, 60, "Input"],
+Cell[16006, 482, 1316, 40, 60, "Input"],
 Cell[CellGroupData[{
-Cell[17057, 519, 146, 3, 36, "Input"],
-Cell[17206, 524, 380, 10, 40, "Output"]
+Cell[17347, 526, 146, 3, 36, "Input"],
+Cell[17496, 531, 404, 10, 40, "Output"]
 }, Open  ]],
-Cell[17601, 537, 536, 15, 36, "Input"],
+Cell[17915, 544, 536, 15, 36, "Input"],
 Cell[CellGroupData[{
-Cell[18162, 556, 340, 6, 36, "Input"],
-Cell[18505, 564, 1348, 35, 90, "Output"]
+Cell[18476, 563, 340, 6, 36, "Input"],
+Cell[18819, 571, 1372, 35, 90, "Output"]
 }, Open  ]],
-Cell[19868, 602, 291, 8, 60, "Input"],
-Cell[20162, 612, 2685, 71, 269, "Input"],
-Cell[22850, 685, 2618, 52, 385, InheritFromParent],
-Cell[25471, 739, 2652, 53, 385, InheritFromParent],
-Cell[28126, 794, 2642, 52, 385, InheritFromParent],
-Cell[30771, 848, 2668, 53, 385, InheritFromParent],
-Cell[33442, 903, 2645, 52, 385, InheritFromParent]
+Cell[20206, 609, 291, 8, 60, "Input"],
+Cell[CellGroupData[{
+Cell[20522, 621, 2734, 71, 300, "Input"],
+Cell[23259, 694, 2556, 51, 470, "Output"]
+}, Open  ]],
+Cell[25830, 748, 2654, 53, 385, "Input"],
+Cell[28487, 803, 2688, 54, 385, "Input"],
+Cell[31178, 859, 2678, 53, 385, "Input"],
+Cell[33859, 914, 2704, 54, 385, "Input"],
+Cell[36566, 970, 2681, 53, 385, "Input"]
 }
 ]
 *)
