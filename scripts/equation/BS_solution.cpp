@@ -1,4 +1,9 @@
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <cstdlib>
+
 using namespace std;
 
 
@@ -49,21 +54,51 @@ double bs(double b0,double b1,double b2,double b3,double b4){
 
 int main(int argc, char** argv) {
 	double b0 = 0,b1=0,b2=0,b3=0,b4=0;
-	double b5 = .21,b6=0.,b7=0.,b8=0.,b9=0.,b10=0.;
-	double x = 0,t=0;
+	double b5 = 0,b6=0.,b7=0.,b8=0.,b9=0.,b10=0.;
+	double x = 0,t=0, sd = 0;
 	double result,result2, result3,result4,result5;
-	cout << "dame b0: \n";
-	cin  >> b0;
-	cout << "dame b1: \n";
-	cin  >> b1;
-	cout << "dame b2: \n";
-	cin  >> b2;
-	cout << "dame b3: \n";
-	cin  >> b3;
-	cout << "dame b4: \n";
-	cin  >> b4;
-	cout << "dame 't' tiempo de inversion: \n";
-	cin  >> t;
+
+	/*3##########################################
+	##   Inicia proceso de carga de datos    ####
+    #############################################*/
+
+    vector<double> valores;
+    double valor;
+    string line;
+    ifstream myfile ("data.txt");
+
+    if (myfile.is_open())
+    {
+        while ( getline (myfile,line) )
+        {
+            if (line[0] != '#')
+                //cout << line << '\n';
+                valor = atof(line.c_str());
+                valores.emplace_back(valor);
+        }
+        myfile.close();
+    }
+    else cout << "¡NOOOOO! ¡El archivo no existe!";
+
+    valores.erase(valores.begin()); // eliminamos el primer elemento del vector, que queda con valor 0, ya que solo le fuimos agregando cosas
+    valores.erase(valores.begin());
+    sd = valores[0];
+    t = valores[1];
+    b1 = valores[2];
+    b2 = valores[3];
+    b3 = valores[4];
+    b4 = valores[5];
+    b5 = valores[6];
+    b6 = valores[7];
+    b7 = valores[8];
+    b8 = valores[9];
+    b9 = valores[10];
+    b10 = valores[11];
+
+ 	/*3##########################################
+	############   B-S equation    ##############
+    #############################################*/
+
 	cout << "dame x: \n";
 	cin  >> x;
 	result = d1(b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,x,0.001);
