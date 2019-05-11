@@ -94,6 +94,19 @@ int main(int argc, char** argv) {
     b8 = valores[9];
     b9 = valores[10];
     b10 = valores[11];
+    cout << sd << '\n';
+    cout << t << '\n';
+    cout << b1 << '\n';
+    cout << b2 << '\n';
+    cout << b3 << '\n';
+    cout << b4 << '\n';
+    cout << b5 << '\n';
+    cout << b6 << '\n';
+    cout << b7 << '\n';
+    cout << b8 << '\n';
+    cout << b9 << '\n';
+    cout << b10 << '\n';
+
 
  	/*3##########################################
 	############   B-S equation    ##############

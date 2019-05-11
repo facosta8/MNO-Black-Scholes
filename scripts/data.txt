@@ -1,9 +1,0 @@
-# desviacion estandar
-12.34
-# betas
-19
-23
-12
-67
-8
-12
