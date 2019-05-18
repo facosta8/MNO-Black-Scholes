@@ -1,0 +1,5 @@
+Resultado u0: 4.9837e+24.
+Resultado A0: 1.24623e+42.
+Resultado u1: -3.89446e+51.
+Resultado u(500,1):   -3.89446e+51
+14.795

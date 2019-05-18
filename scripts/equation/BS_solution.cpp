@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <cstdlib>
+#include <math.h>
 
 using namespace std;
 
@@ -58,11 +59,17 @@ double u1(double b0,double b1,double b2,double b3,double b4,double b5,double b6,
     return -1*(-0.5*sd*sd*x*x*d2(b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,b10, x,0.01) + r*x*d1(b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,b10, x,0.01)-r)*t + ro*sd*sd*x*x*x*A0(b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,b10, x)*t;
 }
 
+ double A1(double b0,double b1,double b2,double b3,double b4,double b5,double b6,double b7,double b8,double b9,double b10,double x,double t,double sd, double ro, double r){
+    return 2*d2(b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,b10, x,0.01)*(-1*(-0.5*sd*sd*(2*d2(b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,b10, x,0.01)+x*x*d4(b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,b10, x,0.01)+r*x*d3(b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,b10, x,0.01)))*t + (ro*sd*sd*t*6*x*(2*(d3(b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,b10, x,0.01)*d3(b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,b10, x,0.01)+d4(b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,b10, x,0.01)*d2(b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,b10, x,0.01) ))));
+ }
 
+ double u2(double b0,double b1,double b2,double b3,double b4,double b5,double b6,double b7,double b8,double b9,double b10,double x,double t,double sd, double ro, double r){
+    return -1*(-0.5*sd*sd*x*x*((-1*(-0.5*sd*sd*(2*d2(b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,b10, x,0.01)+x*x*d4(b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,b10, x,0.01)+r*x*d3(b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,b10, x,0.01)))*t + (ro*sd*sd*t*6*x*(2*(d3(b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,b10, x,0.01)*d3(b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,b10, x,0.01)+d4(b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,b10, x,0.01)*d2(b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,b10, x,0.01) ))))) + r*x*(-1*(-0.5*sd*sd*(2*x*d2(b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,b10, x,0.01)+x*x*d3(b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,b10, x,0.01)) + r*(d1(b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,b10, x,0.01)+x*d2(b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,b10, x,0.01)))*t + ro*sd*sd*t*(3*x*x*A0(b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,x) + x*x*x+(2*d2(b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,b10, x,0.01)*d3(b0, b1, b2, b3, b4, b5, b6, b7, b8, b9,b10, x,0.01))))-r)*t + ro*sd*sd*t*x*x*x*A1(b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,x,t,sd,ro,r);
+ }
 int main(int argc, char** argv) {
 	double b0 = 0,b1=0,b2=0,b3=0,b4=0;
 	double b5 = 0,b6=0.,b7=0.,b8=0.,b9=0.,b10=0.;
-	double x = 0,t=0, sd = 0,ro = -0.01,r = 0.08;
+	double x = 0,t=0, sd = 0,ro = -0.9,r = 0.18;
 	double result,result2, result3,result4,result5,resultado = 0.0;
 
 	/*3##############################################################
@@ -87,11 +94,11 @@ int main(int argc, char** argv) {
     }
     else cout << "¡NOOOOO! ¡El archivo no existe!";
 
-    valores.erase(valores.begin()); // eliminamos el primer elemento del vector, que queda con valor 0, ya que solo le fuimos agregando cosas
-    valores.erase(valores.begin());
+    //valores.erase(valores.begin()); // eliminamos el primer elemento del vector, que queda con valor 0, ya que solo le fuimos agregando cosas
+    //valores.erase(valores.begin());
     sd = valores[0];
-    t = valores[1]; /* Tiempo que dura la inversión también pensar en t = T - Tau*/
-    x = valores[2]; /* Valor inicial de la acción, es decir, al momento de la consulta*/
+    x = valores[1]/valores[1]; /* Valor al último día*/
+    t = valores[2]/12; /* tiempo que dura*/
     b0 = valores[3];
     b1 = valores[4];
     b2 = valores[5];
@@ -104,22 +111,23 @@ int main(int argc, char** argv) {
     b9 = valores[12];
     b10 = valores[13];
 
-
- 	/*###########################################
+   	/*###########################################
 	############   B-S equation    ##############
     #############################################*/
 
 	result = u0(b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,x);
 	result2 = A0(b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,x);
 	result3 = u1(b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,x,t,sd,ro,r);
-	result4 = d4(b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,x,0.01);
-	result5 = in(b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,t);
-	result5 = in(b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,t);
-	resultado = result + result3; /*Suma de terminos para aproximación de resultados*/
-	cout << "Resultado u0: " << result << ".\n";
+	result4 = A1(b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,x,t,sd,ro,r);
+	result5 = u2(b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,x,t,sd,ro,r);
+	resultado = result + result3 + result5; /*Suma de terminos para aproximación de resultados*/
+	/*cout << "Resultado u0: " << result << ".\n";
 	cout << "Resultado A0: " << result2 << ".\n";
 	cout << "Resultado u1: " << result3 << ".\n";
-	cout << "Resultado u(" << x << "," << t << "):   " << resultado << "\n";
+	cout << "Resultado A1: " << result4 << ".\n";
+	cout << "Resultado u2: " << result5 << ".\n";
+	cout << "Resultado u(" << x << "," << t << "):   " << resultado << "\n";*/
+    cout << resultado;
 
 
 	return 0;
