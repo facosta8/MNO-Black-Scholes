@@ -1,12 +1,10 @@
-
-# Usados en este programa
 import pandas as pd
 import datetime
 import numpy as np
 from sklearn.metrics import r2_score
+import sys
+import os
 
-# Extraigo Información de Yahoo
-import fix_yahoo_finance as yf 
 
 # Paralelización 
 
@@ -20,204 +18,198 @@ client.cluster
 
 from dask import delayed
 
-
-# moment: 'a' = Apertura, 'c'= Cierre, 'h'=máximo, 'l'=mínimo
-@delayed
-def fin_poly_reg(it,investment_length, years_back, future_code, moment, r2_min):
-    
-    # Tiempo que dura la inversión
-    
-    il = investment_length
-    
-    now = datetime.datetime.now()
-    a_t = str(now)[0:10]
-    b_t = str(int(str(now)[0:4])-years_back)+str(now)[4:10]
-    
-    sys.stdout = open(os.devnull, "w")
-    yahoo = yf.download(future_code,b_t,a_t)
-    sys.stdout = sys.__stdout__
-    
-    
-    deg = [1,2,3,4,5,6,7,8,9]
-    
-    if moment == 'a':
-    
-        # Apertura
-        
-        X = yahoo.iloc[:,0]
-        
-        # Desviación estándar
-        
-        sd =np.std(X)
-        
-        # Valor al ultimo día del stock 
-        
-        vu = X[-1]
-        
-        # Regresión polinomial 
-        
-        for grad in deg:
-                                          
-            z = np.polyfit(np.arange(len(X)),X.values,grad)
-            
-            ypred = np.polyval(z,np.arange(len(X)))
-            
-            r2 = r2_score(X.values, ypred)
-            
-            if r2 >= r2_min:
-                
-                break
-    
-    if moment == 'c':
-        
-        # Cierre 
-        
-        X = yahoo.iloc[:,3]
-        
-        # Desviación estándar
-        
-        sd =np.std(X)
-        
-        # Valor al ultimo día del stock 
-        
-        vu = X[-1]
-        
-        # Regresión polinomial 
-        
-        for grad in deg:
-        
-            
-            z = np.polyfit(np.arange(len(X)),X.values,grad)
-            
-            ypred = np.polyval(z,np.arange(len(X)))
-            
-            r2 = r2_score(X.values, ypred)
-            
-            if r2 >= r2_min:
-                
-                break
-    
-        
-        
-    if moment == 'h':
-    
-        # High
-        
-        X = yahoo.iloc[:,1]
-        
-        # Desviación estándar
-        
-        sd =np.std(X)
-        
-        # Valor al ultimo día del stock 
-        
-        vu = X[-1]
-        
-        # Regresión polinomial 
-        
-        for grad in deg:  
-            
-            z = np.polyfit(np.arange(len(X)),X.values,grad)
-            
-            ypred = np.polyval(z,np.arange(len(X)))
-            
-            r2 = r2_score(X.values, ypred)
-            
-            if r2 >= r2_min:
-                
-                break
-        
-    if moment == 'l':
-   
-        # Low
-        
-        X = yahoo.iloc[:,2]
-
-        # Desviación estándar
-        
-        sd =np.std(X)
-        
-        # Valor al ultimo día del stock 
-        
-        vu = X[-1]
-        
-        # Regresión polinomial         
-        
-        for grad in deg:
-        
-            
-            
-            z = np.polyfit(np.arange(len(X)),X.values,grad)
-            
-            ypred = np.polyval(z,np.arange(len(X)))
-            
-            r2 = r2_score(X.values, ypred)
-            
-            if r2 >= r2_min:
-                
-                break
-    
-    if r2 < r2_min:
-        
-        # Probablemente sea más util eliminar esta advertencia
-        print('ADVERTENCIA : r2 no alcanzó el mínimo, 10 bethas por default')
-      
-    nl= '\n'
-    
-    
-    # Send to txt 
-    
-        #Betas 
-    vec=''   
-    for i in range(len(z)):
-        vec = vec+str(z[i])+nl
-    
-        # 
-        
-    with open('triplef_'+str(it)+'.txt', 'w') as the_file:
-        the_file.write(str(str(sd)+nl+str(vu)+nl+str(il)+nl+vec))
-        the_file.close()
-    
-    
-    return None
-    
-
-uno = fin_poly_reg(it=1,investment_length=10, years_back=3, future_code="NG=F", moment='a', r2_min=0.5)
-
-### FORMATO DE DATOS GUARDADOS EN TXT
-
-# sd
-#valor al último día del stock
-#tiempo que dura la inversión
-#betas
-
+os.chdir('git/MNO-Black-Scholes/modelo_simple')
 
 
 """
-Descargo toda la información de yahoo al mismo tiempo 
-"""
 
-def 
-
-
-
-
+                    ----------------------- ENFOQUE QUANDL -----------------------
 
 """
-GRAFICA DE COMPROBACIÓN DE REGRESIÓN
+
+import quandl
+# Abro llave de quandl
+quank = open('./keys/quandl.txt').readline().split(':')[1].strip()
+quandl.ApiConfig.api_key = quank
 
 
-plot('xlabel', 'ylabel', data=X)
+# Lista de características del portafolio: [meses a predecir, r2_minima, commodities...]
+
+lista_run = ['1','0.0001',"LBMA/GOLD","CHRIS/CME_O1", "CHRIS/CME_LB1"]
+
+# Lista del total de commodities con que se trabaja 
+
+lista_desc = ["LBMA/GOLD","CHRIS/CME_O1","LBMA/SILVER","CHRIS/CME_DA1","CHRIS/CME_LN1",
+              "CHRIS/CME_C1", "CHRIS/CME_RR1", "CHRIS/CME_LB1","CHRIS/CME_RB1", "CHRIS/CME_NG1",
+              "CHRIS/CME_PL1","CHRIS/CME_S1"]
+
+
+# Función de descarga de datos en paralelo  
+
+def download_info(lista_desc):
+
+    @delayed
+    def desc_datos(years_back, future_code):
+        
+        now = datetime.datetime.now()
+        a_t = str(now)[0:10]
+        b_t = str(int(str(now)[0:4])-years_back)+str(now)[4:10]
+        
+        sys.stdout = open(os.devnull, "w")
+        #yahoo = yf.download(future_code,b_t,a_t)
+        yahoo = quandl.get(future_code, collapse="daily",start_date=b_t, end_date=a_t)
     
-import matplotlib.pyplot as plt
+        sys.stdout = sys.__stdout__
+        
+        return yahoo.iloc[:,0]
+    
+    
+ 
+    
+    
+    to_merge=[]
+    for i in range(len(lista_desc)):
+         
+        
+        globals()['data%s'%i] = desc_datos(years_back=3, future_code=lista_desc[i]) #uso 3 años de historia 
+        
+        to_merge.append(globals()['data%s'%i])
+        
+    
+    @delayed
+    def create_variables(to_merge):
+        
+        variables = pd.concat(to_merge, axis=1)
+        return variables
+    
+    
+    intento = create_variables(to_merge)
+    datos = intento.compute()
+    
+    datos.columns = lista_desc
+    
+    datos.to_csv("datos.csv")
+    
+    return None 
 
-def f(t,z):
-    return z[0]+z[1]*t+z[2]*t**2+z[3]*t**3
 
-t1 = np.arange(0.0, 5.0, 0.1)
-t2 = np.arange(0.0, 5.0, 0.02)
 
-plt.figure(1)
-plt.subplot(211)
-plt.plot(t1, f(t1,z), 'bo', t2, f(t2,z), 'k')
-"""   
+def analisis_p(lista_run):
+    
+    # Saco la info de datos.csv de acuerdo al código
+    
+    info = pd.read_csv("datos.csv")
+    
+    # Análisis de portafolio 
+        
+    
+    def fin_poly_reg(lista_run,info,investment_length, future_code, r2_min):
+        
+        # Tiempo que dura la inversión
+        
+        il = investment_length
+        
+            
+        X = info.loc[:,future_code]
+        X = X.dropna()
+        # Desviación estándar
+        
+        sd =np.std(X)
+        
+        # Valor al ultimo día del stock 
+        
+        vu = X.tolist()[-1]
+        
+        # Regresión polinomial 
+        
+        deg = [1,2,3,4,5,6,7,8,9] # número de bethas posibles 
+        
+        for j in range(len(deg)):
+            
+            z = np.polyfit(np.arange(len(X)),X.values,deg[j])
+            
+            ypred = np.polyval(z,np.arange(len(X)))
+            
+            r2 = r2_score(X.values, ypred)
+            
+            if r2 >= r2_min:
+                
+                break
+        
+        
+        """
+        GUARDO RESULTADOS DE REGRESIÓN EN TXT
+            
+        El formato dentro del txt es:
+        
+        sd
+        valor al último día del stock
+        tiempo que dura la inversión
+        betas
+        
+        """
+    
+    
+        
+        nl='\n'
+        
+            #Betas 
+        vec=''   
+        for i in range(len(z)):
+            vec = vec+str(z[i])+nl
+        
+            # 
+            
+        with open('data.txt', 'w') as the_file:
+            the_file.write(str(str(sd)+nl+str(vu)+nl+str(il)+nl+vec))
+            the_file.close()
+        
+        """
+        CALCULO RENDIMIENTO CON BLACK-SCHOLES Y LEO RESULTADOS
+        """
+        
+        os.system('./programa.o > out.txt')
+    
+        f = open('out.txt')
+        tocayo = f.readlines()
+        f.close()
+       
+        """
+        Calculo varianza para ver si las predicciones del tocayo están muy lejos 
+        """
+        var = np.var(X)
+        
+        
+        sal = [future_code,vu,float(tocayo[0])]
+        
+        rend = 100*(float(sal[2])-float(sal[1]))/float(sal[1])
+        
+        return pd.DataFrame({'commodity':[sal[0]],'last_price':[sal[1]],
+                             'predicted_price':[sal[2]],'difference(%)':rend,'ts_variance':var,
+                             'bethas':[z], 'rango':str(X.min())+'-'+str(X.max())})
+    
+    
+    
+    
+    
+    #uno = fin_poly_reg(info, investment_length=10, future_code='LBMA/GOLD', r2_min=0.5)
+    
+    # JUNTO TODO 
+    
+    comodities=[]
+    for i in range(len(lista_run)-2):
+        i=i+2
+        
+        globals()['com%s'%i] = fin_poly_reg(lista_run,info,investment_length = float(lista_run[0]),
+                                            future_code=lista_run[i], r2_min=float(lista_run[1]))
+        
+        comodities.append(globals()['com%s'%i])
+            
+        variables = pd.concat(comodities, axis=0)
+    
+    return variables 
+
+
+# Verifica que corra aquí 
+prueba = analisis_p(lista_run)
+
