@@ -35,7 +35,9 @@ quandl.ApiConfig.api_key = quank
 
 # Lista de características del portafolio: [meses a predecir, r2_minima, commodities...]
 
-lista_run = ['1','0.0001',"LBMA/GOLD","CHRIS/CME_O1", "CHRIS/CME_LB1"]
+lista_run = ['10','0.5',"LBMA/GOLD","CHRIS/CME_O1","LBMA/SILVER","CHRIS/CME_DA1","CHRIS/CME_LN1",
+              "CHRIS/CME_C1", "CHRIS/CME_RR1", "CHRIS/CME_LB1","CHRIS/CME_RB1", "CHRIS/CME_NG1",
+              "CHRIS/CME_PL1","CHRIS/CME_S1"]
 
 # Lista del total de commodities con que se trabaja 
 
@@ -213,3 +215,137 @@ def analisis_p(lista_run):
 # Verifica que corra aquí 
 prueba = analisis_p(lista_run)
 
+
+"""
+
+     --------------------  DATOS DE ENTRADA MODIFICADOS  --------------------
+
+"""
+
+def analisis_p(lista_run):
+    
+    # Saco la info de datos.csv de acuerdo al código
+    
+    info = pd.read_csv("datos.csv")
+    
+    # Análisis de portafolio 
+        
+    
+    def fin_poly_reg(lista_run,info,investment_length, future_code, r2_min):
+        
+        # Tiempo que dura la inversión
+        
+        il = investment_length
+        
+            
+        X = info.loc[:,future_code]
+        X = X.dropna()
+        
+        # Divido sobre el rango
+        
+        rank = max(X)-min(X)
+        
+        X = pd.Series([ x / rank for x in X])
+        
+        
+        # Desviación estándar
+        
+        sd =np.std(X)
+        
+        # Valor al ultimo día del stock 
+        
+        vu = X.tolist()[-1]
+        
+        # Regresión polinomial 
+        
+        deg = [1,2]#,3,4,5,6,7,8,9] # número de bethas posibles 
+        
+        for j in range(len(deg)):
+            
+            z = np.polyfit(np.arange(len(X)),X.values,deg[j])
+            
+            ypred = np.polyval(z,np.arange(len(X)))
+            
+            r2 = r2_score(X.values, ypred)
+            
+            if r2 >= r2_min:
+                
+                break
+        
+        
+        """
+        GUARDO RESULTADOS DE REGRESIÓN EN TXT
+            
+        El formato dentro del txt es:
+        
+        sd
+        valor al último día del stock
+        tiempo que dura la inversión
+        betas
+        
+        """
+    
+    
+        
+        nl='\n'
+        
+            #Betas 
+        vec=''   
+        for i in range(len(z)):
+            vec = vec+str(z[i])+nl
+        
+            # 
+            
+        with open('data.txt', 'w') as the_file:
+            the_file.write(str(str(sd)+nl+str(vu)+nl+str(il)+nl+vec))
+            the_file.close()
+        
+        """
+        CALCULO RENDIMIENTO CON BLACK-SCHOLES Y LEO RESULTADOS
+        """
+        
+        os.system('./programa.o > out.txt')
+    
+        f = open('out.txt')
+        tocayo = f.readlines()
+        f.close()
+       
+        """
+        Calculo varianza para ver si las predicciones del tocayo están muy lejos 
+        """
+        alt = pd.Series([ x* rank for x in X])
+        var = np.var(alt)
+        
+        
+        sal = [future_code,vu,float(tocayo[0])]
+        
+        rend = 100*(float(sal[2])-float(sal[1]))/float(sal[1])
+        
+        return pd.DataFrame({'commodity':[sal[0]],'last_price':[sal[1]*rank],
+                             'predicted_price':[sal[2]*rank],'difference(%)':rend,'ts_variance':var,
+                             'bethas':[z], 'rango':str(alt.min())+'-'+str(alt.max())})
+    
+    
+    
+    
+    
+    #uno = fin_poly_reg(info, investment_length=10, future_code='LBMA/GOLD', r2_min=0.5)
+    
+    # JUNTO TODO 
+    
+    comodities=[]
+    for i in range(len(lista_run)-2):
+        i=i+2
+        
+        globals()['com%s'%i] = fin_poly_reg(lista_run,info,investment_length = float(lista_run[0]),
+                                            future_code=lista_run[i], r2_min=float(lista_run[1]))
+        
+        comodities.append(globals()['com%s'%i])
+            
+        variables = pd.concat(comodities, axis=0)
+    
+    return variables 
+
+
+# Verifica que corra aquí 
+prueba = analisis_p(lista_run)
