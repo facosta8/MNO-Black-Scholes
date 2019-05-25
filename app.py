@@ -3,7 +3,6 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import dash_daq as daq
-import base64
 from dash.dependencies import Input, Output
 
 external_stylesheets = [
@@ -11,8 +10,6 @@ external_stylesheets = [
 
 app = dash.Dash(__name__)
 
-trabajo_img = 'assets/work.gif'
-encoded_trabajo = base64.b64encode(open(trabajo_img, 'rb').read())
 
 
 colors = {
@@ -28,43 +25,10 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
     html.Div(style={'backgroundColor': colors['background']},
              children=[
 
-#                html.Label('Gold    ',
-#                           className='commodity',
-#                           style={'display': 'inline'}),
-#                dcc.Input(id='GC=F',
-#                          placeholder=0,
-#                          value='number',
-#                          type='number',
-#                          inputMode='numeric',
-#                          style={'display': 'inline'}),
-#                html.Br(),
-
-#                html.Label('Silver    ',
-#                           className='commodity',
-#                           style={'display': 'inline'}),
-#                dcc.Input(id='SI=F',
-#                          placeholder=0,
-#                          value='number',
-#                          type='number',
-#                          inputMode='numeric',
-#                          style={'display': 'inline'}),
-#                html.Br(),
-
-#                html.Label('Platino    ',
-#                           className='commodity',
-#                           style={'display': 'inline'}),
-#                dcc.Input(id='PL=F',
-#                          placeholder=0,
-#                          value='number',
-#                          type='number',
-#                          inputMode='numeric',
-#                          style={'display': 'inline'}),
-#                html.Br(),
-
-                html.Label('Crude oil      ',
+                html.Label('Gold    ',
                            className='commodity',
                            style={'display': 'inline'}),
-                dcc.Input(id='CL',
+                dcc.Input(id='LBMA/GOLD',
                           placeholder=0,
                           value='number',
                           type='number',
@@ -72,10 +36,10 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
                           style={'display': 'inline'}),
                 html.Br(),
 
-                html.Label('Natural gas    ',
+                html.Label('Silver    ',
                            className='commodity',
                            style={'display': 'inline'}),
-                dcc.Input(id='NF',
+                dcc.Input(id='LBMA/SILVER',
                           placeholder=0,
                           value='number',
                           type='number',
@@ -83,10 +47,10 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
                           style={'display': 'inline'}),
                 html.Br(),
 
-                html.Label('Lumber         ',
+                html.Label('Platinum    ',
                            className='commodity',
                            style={'display': 'inline'}),
-                dcc.Input(id='LB',
+                dcc.Input(id='CHRIS/CME_PL1',
                           placeholder=0,
                           value='number',
                           type='number',
@@ -94,10 +58,10 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
                           style={'display': 'inline'}),
                 html.Br(),
 
-                html.Label('Cotton    ',
+                html.Label('Oats      ',
                            className='commodity',
                            style={'display': 'inline'}),
-                dcc.Input(id='CF',
+                dcc.Input(id='CHRIS/CME_O1',
                           placeholder=0,
                           value='number',
                           type='number',
@@ -105,10 +69,10 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
                           style={'display': 'inline'}),
                 html.Br(),
 
-                html.Label('Livestock    ',
+                html.Label('Dairy    ',
                            className='commodity',
                            style={'display': 'inline'}),
-                dcc.Input(id='LC',
+                dcc.Input(id='CHRIS/CME_DA1',
                           placeholder=0,
                           value='number',
                           type='number',
@@ -116,10 +80,10 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
                           style={'display': 'inline'}),
                 html.Br(),
 
-                html.Label('Coffee    ',
+                html.Label('Pork         ',
                            className='commodity',
                            style={'display': 'inline'}),
-                dcc.Input(id='KC',
+                dcc.Input(id='CHRIS/CME_LN1',
                           placeholder=0,
                           value='number',
                           type='number',
@@ -127,10 +91,10 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
                           style={'display': 'inline'}),
                 html.Br(),
 
-                html.Label('Cocoa    ',
+                html.Label('Corn    ',
                            className='commodity',
                            style={'display': 'inline'}),
-                dcc.Input(id='CC',
+                dcc.Input(id='CHRIS/CME_C1',
                           placeholder=0,
                           value='number',
                           type='number',
@@ -138,21 +102,54 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
                           style={'display': 'inline'}),
                 html.Br(),
 
-#                html.Label('Arroz    ',
-#                           className='commodity',
-#                           style={'display': 'inline'}),
-#                dcc.Input(id='RR=F',
-#                          placeholder=0,
-#                          value='number',
-#                          type='number',
-#                          inputMode='numeric',
-#                          style={'display': 'inline'}),
-#                html.Br(),
+                html.Label('Rice    ',
+                           className='commodity',
+                           style={'display': 'inline'}),
+                dcc.Input(id='CHRIS/CME_RR1',
+                          placeholder=0,
+                          value='number',
+                          type='number',
+                          inputMode='numeric',
+                          style={'display': 'inline'}),
+                html.Br(),
+
+                html.Label('Lumber    ',
+                           className='commodity',
+                           style={'display': 'inline'}),
+                dcc.Input(id='CHRIS/CME_LB1',
+                          placeholder=0,
+                          value='number',
+                          type='number',
+                          inputMode='numeric',
+                          style={'display': 'inline'}),
+                html.Br(),
+
+                html.Label('Gasoline    ',
+                           className='commodity',
+                           style={'display': 'inline'}),
+                dcc.Input(id='CHRIS/CME_RB1',
+                          placeholder=0,
+                          value='number',
+                          type='number',
+                          inputMode='numeric',
+                          style={'display': 'inline'}),
+                html.Br(),
+
+                html.Label('Natural Gas    ',
+                           className='commodity',
+                           style={'display': 'inline'}),
+                dcc.Input(id='CHRIS/CME_NG1',
+                          placeholder=0,
+                          value='number',
+                          type='number',
+                          inputMode='numeric',
+                          style={'display': 'inline'}),
+                html.Br(),
 
                 html.Label('Soybean    ',
                            className='commodity',
                            style={'display': 'inline'}),
-                dcc.Input(id='SM',
+                dcc.Input(id='CHRIS/CME_S1',
                           placeholder=0,
                           value='number',
                           type='number',
@@ -208,7 +205,6 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
                        id='textoresultado',
                        className='resultado'),
 
-              #  html.Img(src='data:image/gif;base64,{}'.format(encoded_trabajo))
               html.Img(src=app.get_asset_url('work.gif'),
                        className='puerquito')
 
@@ -218,8 +214,8 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
         id='example-graph-2',
         figure={
             'data': [
-                {'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'bar', 'name': 'SF'},
-                {'x': [1, 2, 3], 'y': [2, 4, 5], 'type': 'bar', 'name': u'Montréal'},
+                {'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'linear', 'name': 'SF'},
+                {'x': [1, 2, 3], 'y': [2, 4, 5], 'type': 'linear', 'name': u'Montréal'},
             ],
             'layout': {
                 'plot_bgcolor': colors['background'],
@@ -238,7 +234,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
     [Input(component_id='CL', component_property='value')]
 )
 def update_output_div(input_value):
-    return 'You\'ve entered "{}"'.format(input_value)
+    return 'El valor estimado de tu portafolio es {}'.format(input_value)
 
 
 if __name__ == '__main__':
