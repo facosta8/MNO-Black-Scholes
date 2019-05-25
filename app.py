@@ -9,12 +9,11 @@ import plotly.graph_objs as go
 import pandas as pd
 from datetime import date
 
-external_stylesheets = [
-        'C://Users//facosta8//giteando//MNO-Black-Scholes//estilo.css']
-
 app = dash.Dash(__name__)
 
-# TODO: función del tocayo para cargar todo
+# TOCAYO: función del tocayo para cargar todo
+# Aquí debe correr la función que descargue todos los datos.
+# Preferentemente, sería bueno que los guardara en un csv llamado datos.csv
 
 nombres_comunes = dict({'LBMA/GOLD': 'Gold',
                         'LBMA/SILVER': 'Silver',
@@ -183,7 +182,8 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
     html.Div(style={'backgroundColor': colors['background']},
              children=[
 
-                html.Img(src=app.get_asset_url('work.gif'),
+                html.Img(id='imagenstatus',
+                         src=app.get_asset_url('sleep.gif'),
                          className='puerquito'),
 
                 html.P('''Choose the commodities you are interested in,
@@ -211,7 +211,8 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
 
 
 @app.callback([Output('grafica_valores', 'figure'),
-               Output('textoresultado', 'children')
+               Output('textoresultado', 'children'),
+               Output('imagenstatus', 'src')
                ],
               [Input('botonCalculo', 'n_clicks')],
               state=[State('LBMA/GOLD', 'value'),
@@ -234,6 +235,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
 def update_graph(n_clicks, in1, in2, in3, in4, in5, in6,
                  in7, in8, in9, in10, in11, in12,
                  meses):
+    # TOCAYO: Aquí lee el archivo con todos los datos
     df = pd.read_csv('modelo_simple/datos.csv')
     df.Date = pd.to_datetime(df.Date)
 
@@ -251,6 +253,7 @@ def update_graph(n_clicks, in1, in2, in3, in4, in5, in6,
                   'CHRIS/CME_S1': in12
                   })
     validos = dict((k, v) for k, v in todos.items() if v > 0)
+    # TOCAYO: Ésta es la lista con todos las commodities con valores
     lista_validos = list(validos.keys())
     cols_seleccionar = lista_validos.copy()
     cols_seleccionar.append('Date')
@@ -258,9 +261,14 @@ def update_graph(n_clicks, in1, in2, in3, in4, in5, in6,
     df = df.filter(items=cols_seleccionar)
     df = df.dropna()
 
+    # TOCAYO: Aquí habría que hacer todos los cálculos de las betas y demás
+    # texto es la variable que se muestra como output final
     texto = 'The total profit over {} months is {}'.format(meses,
                                                            df.sum().sum())
 
+    
+    estatus = app.get_asset_url('work.gif')
+    
     lineas = (len(lista_validos) + 1) // 2
     linea = 1
     columna = 1
@@ -286,7 +294,9 @@ def update_graph(n_clicks, in1, in2, in3, in4, in5, in6,
                          font=dict(color=colors['text']),
                          showlegend=False)
 
-    return fig, texto
+    return fig, texto, estatus
+
+
 
 
 if __name__ == '__main__':
