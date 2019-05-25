@@ -3,13 +3,31 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import dash_daq as daq
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
+import plotly.graph_objs as go
+import pandas as pd
+from datetime import date
 
 external_stylesheets = [
         'C://Users//facosta8//giteando//MNO-Black-Scholes//estilo.css']
 
 app = dash.Dash(__name__)
 
+# TODO: función del tocayo para cargar todo
+
+nombres_comunes = dict({'LBMA/GOLD': 'Gold',
+                        'LBMA/SILVER': 'Silver',
+                        'CHRIS/CME_PL1': 'Platinum',
+                        'CHRIS/CME_O1': 'Oats',
+                        'CHRIS/CME_DA1': 'Dairy',
+                        'CHRIS/CME_LN1': 'Pork',
+                        'CHRIS/CME_C1': 'Corn',
+                        'CHRIS/CME_RR1': 'Rice',
+                        'CHRIS/CME_LB1': 'Lumber',
+                        'CHRIS/CME_RB1': 'Gasoline',
+                        'CHRIS/CME_NG1': 'Natural gas',
+                        'CHRIS/CME_S1': 'Soybean'
+                        })
 
 
 colors = {
@@ -25,136 +43,113 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
     html.Div(style={'backgroundColor': colors['background']},
              children=[
 
-                html.Label('Gold    ',
-                           className='commodity',
-                           style={'display': 'inline'}),
-                dcc.Input(id='LBMA/GOLD',
-                          placeholder=0,
-                          value='number',
-                          type='number',
-                          inputMode='numeric',
-                          style={'display': 'inline'}),
+                daq.NumericInput(id='LBMA/GOLD',
+                                 className='numerico',
+                                 value=0,
+                                 size=100,
+                                 min=0,
+                                 max=10000,
+                                 label='Gold',
+                                 style={'color': '#EFEFEF'}),
                 html.Br(),
 
-                html.Label('Silver    ',
-                           className='commodity',
-                           style={'display': 'inline'}),
-                dcc.Input(id='LBMA/SILVER',
-                          placeholder=0,
-                          value='number',
-                          type='number',
-                          inputMode='numeric',
-                          style={'display': 'inline'}),
+                daq.NumericInput(id='LBMA/SILVER',
+                                 className='numerico',
+                                 value=0,
+                                 size=100,
+                                 min=0,
+                                 max=10000,
+                                 label='Silver'),
                 html.Br(),
 
-                html.Label('Platinum    ',
-                           className='commodity',
-                           style={'display': 'inline'}),
-                dcc.Input(id='CHRIS/CME_PL1',
-                          placeholder=0,
-                          value='number',
-                          type='number',
-                          inputMode='numeric',
-                          style={'display': 'inline'}),
+                daq.NumericInput(id='CHRIS/CME_PL1',
+                                 className='numerico',
+                                 value=0,
+                                 size=100,
+                                 min=0,
+                                 max=10000,
+                                 label='Platinum'),
+                html.Br(),      
+
+                daq.NumericInput(id='CHRIS/CME_O1',
+                                 className='numerico',
+                                 value=0,
+                                 size=100,
+                                 min=0,
+                                 max=10000,
+                                 label='Oats'),
                 html.Br(),
 
-                html.Label('Oats      ',
-                           className='commodity',
-                           style={'display': 'inline'}),
-                dcc.Input(id='CHRIS/CME_O1',
-                          placeholder=0,
-                          value='number',
-                          type='number',
-                          inputMode='numeric',
-                          style={'display': 'inline'}),
+                daq.NumericInput(id='CHRIS/CME_DA1',
+                                 className='numerico',
+                                 value=0,
+                                 size=100,
+                                 min=0,
+                                 max=10000,
+                                 label='Dairy'),
                 html.Br(),
 
-                html.Label('Dairy    ',
-                           className='commodity',
-                           style={'display': 'inline'}),
-                dcc.Input(id='CHRIS/CME_DA1',
-                          placeholder=0,
-                          value='number',
-                          type='number',
-                          inputMode='numeric',
-                          style={'display': 'inline'}),
+                daq.NumericInput(id='CHRIS/CME_LN1',
+                                 className='numerico',
+                                 value=0,
+                                 size=100,
+                                 min=0,
+                                 max=10000,
+                                 label='Pork'),
                 html.Br(),
 
-                html.Label('Pork         ',
-                           className='commodity',
-                           style={'display': 'inline'}),
-                dcc.Input(id='CHRIS/CME_LN1',
-                          placeholder=0,
-                          value='number',
-                          type='number',
-                          inputMode='numeric',
-                          style={'display': 'inline'}),
+                daq.NumericInput(id='CHRIS/CME_C1',
+                                 className='numerico',
+                                 value=0,
+                                 size=100,
+                                 min=0,
+                                 max=10000,
+                                 label='Corn'),
                 html.Br(),
 
-                html.Label('Corn    ',
-                           className='commodity',
-                           style={'display': 'inline'}),
-                dcc.Input(id='CHRIS/CME_C1',
-                          placeholder=0,
-                          value='number',
-                          type='number',
-                          inputMode='numeric',
-                          style={'display': 'inline'}),
+                daq.NumericInput(id='CHRIS/CME_RR1',
+                                 className='numerico',
+                                 value=0,
+                                 size=100,
+                                 min=0,
+                                 max=10000,
+                                 label='Rice'),
                 html.Br(),
 
-                html.Label('Rice    ',
-                           className='commodity',
-                           style={'display': 'inline'}),
-                dcc.Input(id='CHRIS/CME_RR1',
-                          placeholder=0,
-                          value='number',
-                          type='number',
-                          inputMode='numeric',
-                          style={'display': 'inline'}),
+                daq.NumericInput(id='CHRIS/CME_LB1',
+                                 className='numerico',
+                                 value=0,
+                                 size=100,
+                                 min=0,
+                                 max=10000,
+                                 label='Lumber'),
                 html.Br(),
 
-                html.Label('Lumber    ',
-                           className='commodity',
-                           style={'display': 'inline'}),
-                dcc.Input(id='CHRIS/CME_LB1',
-                          placeholder=0,
-                          value='number',
-                          type='number',
-                          inputMode='numeric',
-                          style={'display': 'inline'}),
+                daq.NumericInput(id='CHRIS/CME_RB1',
+                                 className='numerico',
+                                 value=0,
+                                 size=100,
+                                 min=0,
+                                 max=10000,
+                                 label='Gasoline'),
                 html.Br(),
 
-                html.Label('Gasoline    ',
-                           className='commodity',
-                           style={'display': 'inline'}),
-                dcc.Input(id='CHRIS/CME_RB1',
-                          placeholder=0,
-                          value='number',
-                          type='number',
-                          inputMode='numeric',
-                          style={'display': 'inline'}),
+                daq.NumericInput(id='CHRIS/CME_NG1',
+                                 className='numerico',
+                                 value=0,
+                                 size=100,
+                                 min=0,
+                                 max=10000,
+                                 label='Natural Gas'),
                 html.Br(),
 
-                html.Label('Natural Gas    ',
-                           className='commodity',
-                           style={'display': 'inline'}),
-                dcc.Input(id='CHRIS/CME_NG1',
-                          placeholder=0,
-                          value='number',
-                          type='number',
-                          inputMode='numeric',
-                          style={'display': 'inline'}),
-                html.Br(),
-
-                html.Label('Soybean    ',
-                           className='commodity',
-                           style={'display': 'inline'}),
-                dcc.Input(id='CHRIS/CME_S1',
-                          placeholder=0,
-                          value='number',
-                          type='number',
-                          inputMode='numeric',
-                          style={'display': 'inline'}),
+                daq.NumericInput(id='CHRIS/CME_S1',
+                                 className='numerico',
+                                 value=0,
+                                 size=100,
+                                 min=0,
+                                 max=10000,
+                                 label='Soybean'),
                 html.Br(),
 
     ], className='listafuturos'),
@@ -162,23 +157,9 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
     html.Div(style={'backgroundColor': colors['background']},
              children=[
 
-                html.Label('Ajuste',
-                           className='commodity'),
-                daq.Slider(id='ssss',
-                           min=50,
-                           max=100,
-                           marks={'50': '50', '60': '60', '70': '70',
-                                  '80': '80', '90': '90', '100': '100'},
-                           value=70,
-                           size=300,
-                           handleLabel='r^2',
-                           step=10
-                           ),
-                html.Br(),
-
                 html.Label('Meses a proyectar',
                            className='commodity'),
-                daq.Slider(id='dasda',
+                daq.Slider(id='meses',
                            min=2,
                            max=24,
                            marks={'2': '2', '6': '6', '12': '12',
@@ -205,13 +186,13 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
                        id='textoresultado',
                        className='resultado'),
 
-              html.Img(src=app.get_asset_url('work.gif'),
-                       className='puerquito')
+                html.Img(src=app.get_asset_url('work.gif'),
+                         className='puerquito')
 
     ], className='areacalculo'),
 
     dcc.Graph(
-        id='example-graph-2',
+        id='grafica_valores',
         figure={
             'data': [
                 {'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'linear', 'name': 'SF'},
@@ -229,12 +210,108 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
 ])
 
 
+#@app.callback(
+#    Output('textoresultado', 'children'),
+#    [Input('LBMA/GOLD', 'value'),
+#     Input('LBMA/SILVER', 'value'),
+#     Input('CHRIS/CME_PL1', 'value'),
+#     Input('CHRIS/CME_O1', 'value'),
+#     Input('CHRIS/CME_DA1', 'value'),
+#     Input('CHRIS/CME_LN1', 'value'),
+#     Input('CHRIS/CME_C1', 'value'),
+#     Input('CHRIS/CME_RR1', 'value'),
+#     Input('CHRIS/CME_LB1', 'value'),
+#     Input('CHRIS/CME_RB1', 'value'),
+#     Input('CHRIS/CME_NG1', 'value'),
+#     Input('CHRIS/CME_S1', 'value')
+#     ])
+#
+#def update_texto(in1, in2, in3, in4, in5, in6,
+#                 in7, in8, in9, in10, in11, in12):
+#
+#    todos = dict({'LBMA/GOLD': in1,
+#                  'LBMA/SILVER': in2,
+#                  'CHRIS/CME_PL1': in3,
+#                  'CHRIS/CME_O1': in4,
+#                  'CHRIS/CME_DA1': in5,
+#                  'CHRIS/CME_LN1': in6,
+#                  'CHRIS/CME_C1': in7,
+#                  'CHRIS/CME_RR1': in8,
+#                  'CHRIS/CME_LB1': in9,
+#                  'CHRIS/CME_RB1': in10,
+#                  'CHRIS/CME_NG1': in11,
+#                  'CHRIS/CME_S1': in12
+#                  })
+#    validos = dict((k, v) for k, v in todos.items() if v > 0)
+#    return 'El cálculo se hizo: {}'.format(len(validos.keys()))
+
+
 @app.callback(
-    Output(component_id='textoresultado', component_property='children'),
-    [Input(component_id='CL', component_property='value')]
-)
-def update_output_div(input_value):
-    return 'El valor estimado de tu portafolio es {}'.format(input_value)
+    Output('grafica_valores', 'figure'),
+    [Input('botonCalculo', 'n_clicks')],
+    state=[State('LBMA/GOLD', 'value'),
+           State('LBMA/SILVER', 'value'),
+           State('CHRIS/CME_PL1', 'value'),
+           State('CHRIS/CME_O1', 'value'),
+           State('CHRIS/CME_DA1', 'value'),
+           State('CHRIS/CME_LN1', 'value'),
+           State('CHRIS/CME_C1', 'value'),
+           State('CHRIS/CME_RR1', 'value'),
+           State('CHRIS/CME_LB1', 'value'),
+           State('CHRIS/CME_RB1', 'value'),
+           State('CHRIS/CME_NG1', 'value'),
+           State('CHRIS/CME_S1', 'value'),
+           State('meses', 'value')
+           ]
+    )
+
+def update_graph(n_clicks, in1, in2, in3, in4, in5, in6,
+                 in7, in8, in9, in10, in11, in12,
+                 meses):
+    
+    df = pd.read_csv('modelo_simple/datos.csv')
+    df.Date = pd.to_datetime(df.Date)
+
+    todos = dict({'LBMA/GOLD': in1,
+                  'LBMA/SILVER': in2,
+                  'CHRIS/CME_PL1': in3,
+                  'CHRIS/CME_O1': in4,
+                  'CHRIS/CME_DA1': in5,
+                  'CHRIS/CME_LN1': in6,
+                  'CHRIS/CME_C1': in7,
+                  'CHRIS/CME_RR1': in8,
+                  'CHRIS/CME_LB1': in9,
+                  'CHRIS/CME_RB1': in10,
+                  'CHRIS/CME_NG1': in11,
+                  'CHRIS/CME_S1': in12
+                  })
+    validos = dict((k, v) for k, v in todos.items() if v > 0)
+    lista_validos = list(validos.keys())
+    cols_seleccionar = lista_validos.copy()
+    cols_seleccionar.append('Date')
+    df = df[df.Date > (date.today() - pd.offsets.MonthBegin(meses))]
+    df = df.filter(items=cols_seleccionar)
+    df = df.dropna()
+    
+    return {
+            'data': [ {
+                        'x': df.Date,
+                        'y': df[commodity],
+                        'name': nombres_comunes[commodity],
+                        'mode':'lines+markers'
+                    } for commodity in lista_validos
+                    ],      
+            'layout': {
+                    'xaxis': {'title': 'Date'},
+                    'yaxis': {'title': "Opening value"},
+                    'plot_bgcolor': colors['background'],
+                    'paper_bgcolor': colors['background'],
+                    'font': {'color': colors['text'] }
+                      }
+        }
+
+
+
 
 
 if __name__ == '__main__':
