@@ -4,6 +4,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 import dash_daq as daq
 from dash.dependencies import Input, Output, State
+from plotly import tools
 import plotly.graph_objs as go
 import pandas as pd
 from datetime import date
@@ -37,7 +38,7 @@ colors = {
 
 app.layout = html.Div(style={'backgroundColor': colors['background']},
                       children=[
-    html.H1("Futures Finance Forecast"),
+    html.H1("Commodities Finance Forecast"),
 
 
     html.Div(style={'backgroundColor': colors['background']},
@@ -69,7 +70,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
                                  min=0,
                                  max=10000,
                                  label='Platinum'),
-                html.Br(),      
+                html.Br(),
 
                 daq.NumericInput(id='CHRIS/CME_O1',
                                  className='numerico',
@@ -157,20 +158,20 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
     html.Div(style={'backgroundColor': colors['background']},
              children=[
 
-                html.Label('Meses a proyectar',
+                html.Label('Investment period',
                            className='commodity'),
                 daq.Slider(id='meses',
                            min=2,
                            max=24,
                            marks={'2': '2', '6': '6', '12': '12',
                                   '18': '18', '24': '24'},
-                           value=24,
+                           value=18,
                            size=300,
-                           handleLabel='meses'
+                           handleLabel='Months'
                            ),
                 html.Br(),
 
-                html.Button(html.Span('Realizar cálculo'),
+                html.Button(html.Span('Estimate returns'),
                             id='botonCalculo',
                             className='boton2'),
                 html.Br(),
@@ -182,12 +183,13 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
     html.Div(style={'backgroundColor': colors['background']},
              children=[
 
-                html.P('Run the analysis to see your results',
-                       id='textoresultado',
-                       className='resultado'),
-
                 html.Img(src=app.get_asset_url('work.gif'),
-                         className='puerquito')
+                         className='puerquito'),
+
+                html.P('''Choose the commodities you are interested in,
+                       select the investment period and click on the button''',
+                       id='textoresultado',
+                       className='resultado')
 
     ], className='areacalculo'),
 
@@ -195,8 +197,6 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
         id='grafica_valores',
         figure={
             'data': [
-                {'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'linear', 'name': 'SF'},
-                {'x': [1, 2, 3], 'y': [2, 4, 5], 'type': 'linear', 'name': u'Montréal'},
             ],
             'layout': {
                 'plot_bgcolor': colors['background'],
@@ -210,65 +210,30 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
 ])
 
 
-#@app.callback(
-#    Output('textoresultado', 'children'),
-#    [Input('LBMA/GOLD', 'value'),
-#     Input('LBMA/SILVER', 'value'),
-#     Input('CHRIS/CME_PL1', 'value'),
-#     Input('CHRIS/CME_O1', 'value'),
-#     Input('CHRIS/CME_DA1', 'value'),
-#     Input('CHRIS/CME_LN1', 'value'),
-#     Input('CHRIS/CME_C1', 'value'),
-#     Input('CHRIS/CME_RR1', 'value'),
-#     Input('CHRIS/CME_LB1', 'value'),
-#     Input('CHRIS/CME_RB1', 'value'),
-#     Input('CHRIS/CME_NG1', 'value'),
-#     Input('CHRIS/CME_S1', 'value')
-#     ])
-#
-#def update_texto(in1, in2, in3, in4, in5, in6,
-#                 in7, in8, in9, in10, in11, in12):
-#
-#    todos = dict({'LBMA/GOLD': in1,
-#                  'LBMA/SILVER': in2,
-#                  'CHRIS/CME_PL1': in3,
-#                  'CHRIS/CME_O1': in4,
-#                  'CHRIS/CME_DA1': in5,
-#                  'CHRIS/CME_LN1': in6,
-#                  'CHRIS/CME_C1': in7,
-#                  'CHRIS/CME_RR1': in8,
-#                  'CHRIS/CME_LB1': in9,
-#                  'CHRIS/CME_RB1': in10,
-#                  'CHRIS/CME_NG1': in11,
-#                  'CHRIS/CME_S1': in12
-#                  })
-#    validos = dict((k, v) for k, v in todos.items() if v > 0)
-#    return 'El cálculo se hizo: {}'.format(len(validos.keys()))
+@app.callback([Output('grafica_valores', 'figure'),
+               Output('textoresultado', 'children')
+               ],
+              [Input('botonCalculo', 'n_clicks')],
+              state=[State('LBMA/GOLD', 'value'),
+                     State('LBMA/SILVER', 'value'),
+                     State('CHRIS/CME_PL1', 'value'),
+                     State('CHRIS/CME_O1', 'value'),
+                     State('CHRIS/CME_DA1', 'value'),
+                     State('CHRIS/CME_LN1', 'value'),
+                     State('CHRIS/CME_C1', 'value'),
+                     State('CHRIS/CME_RR1', 'value'),
+                     State('CHRIS/CME_LB1', 'value'),
+                     State('CHRIS/CME_RB1', 'value'),
+                     State('CHRIS/CME_NG1', 'value'),
+                     State('CHRIS/CME_S1', 'value'),
+                     State('meses', 'value')
+                     ]
+              )
 
-
-@app.callback(
-    Output('grafica_valores', 'figure'),
-    [Input('botonCalculo', 'n_clicks')],
-    state=[State('LBMA/GOLD', 'value'),
-           State('LBMA/SILVER', 'value'),
-           State('CHRIS/CME_PL1', 'value'),
-           State('CHRIS/CME_O1', 'value'),
-           State('CHRIS/CME_DA1', 'value'),
-           State('CHRIS/CME_LN1', 'value'),
-           State('CHRIS/CME_C1', 'value'),
-           State('CHRIS/CME_RR1', 'value'),
-           State('CHRIS/CME_LB1', 'value'),
-           State('CHRIS/CME_RB1', 'value'),
-           State('CHRIS/CME_NG1', 'value'),
-           State('CHRIS/CME_S1', 'value'),
-           State('meses', 'value')
-           ]
-    )
 
 def update_graph(n_clicks, in1, in2, in3, in4, in5, in6,
                  in7, in8, in9, in10, in11, in12,
                  meses):
-    
     df = pd.read_csv('modelo_simple/datos.csv')
     df.Date = pd.to_datetime(df.Date)
 
@@ -292,26 +257,36 @@ def update_graph(n_clicks, in1, in2, in3, in4, in5, in6,
     df = df[df.Date > (date.today() - pd.offsets.MonthBegin(meses))]
     df = df.filter(items=cols_seleccionar)
     df = df.dropna()
-    
-    return {
-            'data': [ {
-                        'x': df.Date,
-                        'y': df[commodity],
-                        'name': nombres_comunes[commodity],
-                        'mode':'lines+markers'
-                    } for commodity in lista_validos
-                    ],      
-            'layout': {
-                    'xaxis': {'title': 'Date'},
-                    'yaxis': {'title': "Opening value"},
-                    'plot_bgcolor': colors['background'],
-                    'paper_bgcolor': colors['background'],
-                    'font': {'color': colors['text'] }
-                      }
-        }
 
+    texto = 'The total profit over {} months is {}'.format(meses,
+                                                           df.sum().sum())
 
+    lineas = (len(lista_validos) + 1) // 2
+    linea = 1
+    columna = 1
+    fig = tools.make_subplots(rows=lineas, cols=2,
+                              subplot_titles=[nombres_comunes[c]
+                                              for c in lista_validos])
 
+    for commodity in lista_validos:
+        fig.append_trace(go.Scatter(y=df[commodity],
+                                    x=df['Date'],
+                                    ),
+                         linea, columna
+                         )
+        if columna == 1:
+            columna = 2
+        elif columna == 2:
+            columna = 1
+            linea += 1
+
+    fig['layout'].update(yaxis=dict(title='Opening value'),
+                         plot_bgcolor=colors['background'],
+                         paper_bgcolor=colors['background'],
+                         font=dict(color=colors['text']),
+                         showlegend=False)
+
+    return fig, texto
 
 
 if __name__ == '__main__':

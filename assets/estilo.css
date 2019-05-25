@@ -151,6 +151,15 @@ div.areacalculo{
 	margin-top: 30px;
 }
 
+div.todo{
+	-webkit-column-count: 2; /* Chrome, Safari, Opera */
+	-moz-column-count: 2; /* Firefox */
+	column-count: 2;
+	width:90%;
+	margin:auto;
+	margin-top: 40px;
+}
+
 /* Typography
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 h1, h2, h3, h4, h5, h6 {
@@ -180,7 +189,7 @@ label.commodity {
 }
 
 p.resultado {
-	font-size: 3.5rem;
+	font-size: 2.5rem;
 	color: #BB92BA;
 	display: block;
 	text-transform: uppercase;
