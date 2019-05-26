@@ -10,15 +10,15 @@ import os
 
 # DASK
 import dask as dask
-from dask.distributed import Client, progress
+#from dask.distributed import Client, progress
 import dask.dataframe as dd
 
-client = Client()
-client.cluster
+#client = Client()
+#client.cluster
 
 from dask import delayed
 
-os.chdir('git/MNO-Black-Scholes/modelo_simple')
+#os.chdir('git/MNO-Black-Scholes/modelo_simple')
 
 
 """
@@ -29,7 +29,7 @@ os.chdir('git/MNO-Black-Scholes/modelo_simple')
 
 import quandl
 # Abro llave de quandl
-quank = open('./keys/quandl.txt').readline().split(':')[1].strip()
+quank = open('./modelo_simple/keys/quandl.txt').readline().split(':')[1].strip()
 quandl.ApiConfig.api_key = quank
 
 

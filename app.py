@@ -9,11 +9,33 @@ import plotly.graph_objs as go
 import pandas as pd
 from datetime import date
 
+# Importo Dask
+
+import dask as dask
+from dask.distributed import Client, progress
+import dask.dataframe as dd
+
+#client = Client()
+#client.cluster
+
+# Importo funciones de regresion.py
+
+
+from regresion import download_info, analisis_p
+
 app = dash.Dash(__name__)
 
 # TOCAYO: función del tocayo para cargar todo
 # Aquí debe correr la función que descargue todos los datos.
-# Preferentemente, sería bueno que los guardara en un csv llamado datos.csv
+
+#lista que especifica lo que se descarga
+lista_desc = ["LBMA/GOLD","CHRIS/CME_O1","LBMA/SILVER","CHRIS/CME_DA1","CHRIS/CME_LN1",
+              "CHRIS/CME_C1", "CHRIS/CME_RR1", "CHRIS/CME_LB1","CHRIS/CME_RB1", "CHRIS/CME_NG1",
+              "CHRIS/CME_PL1","CHRIS/CME_S1"] 
+
+download_info(lista_desc)
+
+# Preferentemente, sería bueno que los guardara en un csv llamado datos.csv =Asi lo hace
 
 nombres_comunes = dict({'LBMA/GOLD': 'Gold',
                         'LBMA/SILVER': 'Silver',
@@ -236,7 +258,7 @@ def update_graph(n_clicks, in1, in2, in3, in4, in5, in6,
                  in7, in8, in9, in10, in11, in12,
                  meses):
     # TOCAYO: Aquí lee el archivo con todos los datos
-    df = pd.read_csv('modelo_simple/datos.csv')
+    df = pd.read_csv('datos.csv') # ya no va a la carpeta de modelo_simple/
     df.Date = pd.to_datetime(df.Date)
 
     todos = dict({'LBMA/GOLD': in1,
@@ -255,6 +277,23 @@ def update_graph(n_clicks, in1, in2, in3, in4, in5, in6,
     validos = dict((k, v) for k, v in todos.items() if v > 0)
     # TOCAYO: Ésta es la lista con todos las commodities con valores
     lista_validos = list(validos.keys())
+    
+    lista_run = [meses,'0.0001'] #el valor de 0.0001 es la r2 mínima que decidimos
+    #dejar baja para reducir el no de bethas, la mantengo por si posteriormente
+    # se agrega un scroller con el que se pueda modificar 
+    
+    lista_run = lista_run+lista_validos
+    
+    # Corro mi código para calcular rendimientos
+    rendim = analisis_p(lista_run)
+    cant = list(validos.values())
+    rendim['cant']=cant
+    
+    te = sum(rendim['last_price']*rendim['cant'])
+    ga = sum(rendim['predicted_price']*rendim['cant'])
+    re = str(round(100*(ga-te)/te,2))+'%'
+    
+    # Esto no lo entiendo pero lo dejo 
     cols_seleccionar = lista_validos.copy()
     cols_seleccionar.append('Date')
     df = df[df.Date > (date.today() - pd.offsets.MonthBegin(meses))]
@@ -263,8 +302,8 @@ def update_graph(n_clicks, in1, in2, in3, in4, in5, in6,
 
     # TOCAYO: Aquí habría que hacer todos los cálculos de las betas y demás
     # texto es la variable que se muestra como output final
-    texto = 'The total profit over {} months is {}'.format(meses,
-                                                           df.sum().sum())
+    texto = 'The percentual value increase over {} months is {}'.format(meses,
+                                                           re)
 
     
     estatus = app.get_asset_url('work.gif')
