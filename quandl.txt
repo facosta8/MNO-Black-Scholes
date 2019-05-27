@@ -1,0 +1,3 @@
+Your_Key: 
+# Paste your Quandl API Key leaving a blank space after the ":"
+

@@ -29,7 +29,7 @@ from dask import delayed
 
 import quandl
 # Abro llave de quandl
-quank = open('./modelo_simple/keys/quandl.txt').readline().split(':')[1].strip()
+quank = open('quandl.txt').readline().split(':')[1].strip()
 quandl.ApiConfig.api_key = quank
 
 

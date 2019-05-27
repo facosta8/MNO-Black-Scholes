@@ -143,10 +143,10 @@ div.listafuturos{
 }
 
 div.areacalculo{
-	-webkit-column-count: 2; /* Chrome, Safari, Opera */
-	-moz-column-count: 2; /* Firefox */
-	column-count: 2;
-	width:50%;
+	-webkit-column-count: 1; /* Chrome, Safari, Opera */
+	-moz-column-count: 1; /* Firefox */
+	column-count: 1;
+	width:40%;
 	margin:auto;
 	margin-top: 30px;
 }
