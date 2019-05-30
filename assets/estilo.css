@@ -138,7 +138,7 @@ div.listafuturos{
 	-webkit-column-count: 3; /* Chrome, Safari, Opera */
 	-moz-column-count: 3; /* Firefox */
 	column-count: 3;
-	width:60%;
+	width:70%;
 	margin:auto;
 }
 

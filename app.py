@@ -77,15 +77,6 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
                                  label='Silver'),
                 html.Br(),
 
-                daq.NumericInput(id='CHRIS/CME_PL1',
-                                 className='numerico',
-                                 value=0,
-                                 size=100,
-                                 min=0,
-                                 max=10000,
-                                 label='Platinum'),
-                html.Br(),
-
                 daq.NumericInput(id='CHRIS/CME_O1',
                                  className='numerico',
                                  value=0,
@@ -122,14 +113,6 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
                                  label='Rice'),
                 html.Br(),
 
-                daq.NumericInput(id='CHRIS/CME_LB1',
-                                 className='numerico',
-                                 value=0,
-                                 size=100,
-                                 min=0,
-                                 max=10000,
-                                 label='Lumber'),
-                html.Br(),
 
                 daq.NumericInput(id='CHRIS/CME_RB1',
                                  className='numerico',
@@ -158,6 +141,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
                                  label='Soybean'),
                 html.Br(),
 
+
     ], className='listafuturos'),
 
     html.Div(style={'backgroundColor': colors['background']},
@@ -175,9 +159,8 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
                            handleLabel='Months'
                            ),
                 html.Br(),
-                html.Br(),
-                html.Br(),
-
+                
+                
                 html.Button(html.Span('Estimate returns'),
                             id='botonCalculo',
                             className='boton2'),
@@ -218,12 +201,10 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
               [Input('botonCalculo', 'n_clicks')],
               state=[State('LBMA/GOLD', 'value'),
                      State('LBMA/SILVER', 'value'),
-                     State('CHRIS/CME_PL1', 'value'),
                      State('CHRIS/CME_O1', 'value'),
                      State('CHRIS/CME_DA1', 'value'),
                      State('CHRIS/CME_C1', 'value'),
                      State('CHRIS/CME_RR1', 'value'),
-                     State('CHRIS/CME_LB1', 'value'),
                      State('CHRIS/CME_RB1', 'value'),
                      State('CHRIS/CME_NG1', 'value'),
                      State('CHRIS/CME_S1', 'value'),
@@ -233,22 +214,20 @@ app.layout = html.Div(style={'backgroundColor': colors['background']},
 
 
 def update_graph(n_clicks, in1, in2, in3, in4, in5, in6,
-                 in7, in8, in9, in10, in11, meses):
+                 in7, in8, in9, meses):
 
     df = pd.read_csv('datos.csv')  # ya no va a la carpeta de modelo_simple/
     df.Date = pd.to_datetime(df.Date)
 
     todos = dict({'LBMA/GOLD': in1,
                   'LBMA/SILVER': in2,
-                  'CHRIS/CME_PL1': in3,
-                  'CHRIS/CME_O1': in4,
-                  'CHRIS/CME_DA1': in5,
-                  'CHRIS/CME_C1': in6,
-                  'CHRIS/CME_RR1': in7,
-                  'CHRIS/CME_LB1': in8,
-                  'CHRIS/CME_RB1': in9,
-                  'CHRIS/CME_NG1': in10,
-                  'CHRIS/CME_S1': in11
+                  'CHRIS/CME_O1': in3,
+                  'CHRIS/CME_DA1': in4,
+                  'CHRIS/CME_C1': in5,
+                  'CHRIS/CME_RR1': in6,
+                  'CHRIS/CME_RB1': in7,
+                  'CHRIS/CME_NG1': in8,
+                  'CHRIS/CME_S1': in9
                   })
     validos = dict((k, v) for k, v in todos.items() if v > 0)
 
